@@ -5,7 +5,7 @@ import asyncio
 import time
 
 Client = discord.Client()
-client = commands.Bot(command_prefix = "!")
+client = commands.Bot(command_prefix = "-")
 
 @client.event
 async def on_ready():
@@ -14,24 +14,30 @@ async def on_ready():
 @client.event
 async def on_message(message):
 
-    if message.content.upper().startswith('!R'):
+    if message.content.upper().startswith('-HELP'):
+        await client.send_message(message.channel, '__**Current Commands**__ \n ``` -r // Tests if the bot is active. \n -ping // PONG \n -gay // Over-reacts a bit. \n -gucci // Gucci wat? \n -dev // Credits the developer.```')
+
+    if message.content.upper().startswith('-R'):
         await client.send_message(message.channel, 'I am ready nibba')
-    if message.content.upper().startswith('!PING'):
+    if message.content.upper().startswith('-PING'):
         userID = message.author.id
         await client.send_message(message.channel, "<@%s> Pong!" % (userID))
 
-    if message.content.upper().startswith('!GAY'):
+    if message.content.upper().startswith('-GAY'):
         await client.send_message(message.channel, ':regional_indicator_g: :regional_indicator_a: :regional_indicator_y: :regional_indicator_f: :regional_indicator_u: :regional_indicator_c: :regional_indicator_k:')
-    if message.content.upper().startswith('!GUCCI'):
-        await client.send_message(message.channel, ':regional_indicator_g: :regional_indicator_a: :regional_indicator_n: :regional_indicator_g:')
+    if message.content.upper().startswith('-GUCCI'):
+        await client.send_message(message.channel, ':moneybag::regional_indicator_g: :regional_indicator_a: :regional_indicator_n: :regional_indicator_g::moneybag:')
 
         
-    if message.content.upper().startswith('!SAY'):
+    if message.content.upper().startswith('-SAY'):
         args = message.content.split(" ")
         #args[0] = !SAY
         #args[1] = Hey
         #args[2] = There
         #args[1:] = Hey There
         await client.send_message(message.channel, "%s" % (" ".join(args[1:])))
+
+    if message.content.upper().startswith('-DEV'):
+        await client.send_message(message.channel, '__**CREATED BY**__ \n``` Discord // !  Hoeless#9052 \n Twatter // @Official_Hoeless \n Steam // Hoeless \n Thank you for using my bot, this is my first official project.```')
 
 client.run("NDE4MDc1NDUzMjA3NzQwNDE3.DXcUcQ.ClWr9FJnZ3QF8pHePZmljiwo0Lw")
